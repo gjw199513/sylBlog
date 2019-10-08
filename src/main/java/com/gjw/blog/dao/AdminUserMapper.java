@@ -2,11 +2,13 @@ package com.gjw.blog.dao;
 
 import com.gjw.blog.entity.AdminUser;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 /**
  * @author gjw19
  * @date 2019/10/6
  */
+@Component
 public interface AdminUserMapper {
 
     int insert(AdminUser record);

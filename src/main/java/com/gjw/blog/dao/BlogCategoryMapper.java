@@ -3,6 +3,7 @@ package com.gjw.blog.dao;
 import com.gjw.blog.entity.BlogCategory;
 import com.gjw.blog.utils.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author gjw19
  * @date 2019/10/7
  */
+@Component
 public interface BlogCategoryMapper {
     int deleteByPrimaryKey(Integer categoryId);
 

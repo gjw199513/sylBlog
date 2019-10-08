@@ -56,3 +56,23 @@ CREATE TABLE `tb_blog_category`
     PRIMARY KEY (`category_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+DROP TABLE IF EXISTS `tb_blog_tag`;
+
+CREATE TABLE `tb_blog_tag` (
+  `tag_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '标签表主键id',
+  `tag_name` varchar(100) NOT NULL COMMENT '标签名称',
+  `is_deleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除 0=否 1=是',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `tb_blog_tag_relation`;
+
+CREATE TABLE `tb_blog_tag_relation` (
+  `relation_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '关系表id',
+  `blog_id` bigint(20) NOT NULL COMMENT '博客id',
+  `tag_id` int(11) NOT NULL COMMENT '标签id',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+  PRIMARY KEY (`relation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
