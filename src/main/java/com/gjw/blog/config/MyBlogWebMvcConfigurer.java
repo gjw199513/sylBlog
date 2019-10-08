@@ -4,6 +4,7 @@ import com.gjw.blog.interceptor.AdminLoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -25,6 +26,12 @@ public class MyBlogWebMvcConfigurer implements WebMvcConfigurer {
                 excludePathPatterns("/admin/login").
                 excludePathPatterns("/admin/dist/**").
                 excludePathPatterns("/admin/plugins/**");
-        ;
+
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/upload/**").addResourceLocations("file:/home/project/upload/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:D:\\java程序\\实验楼博客\\upload\\");
     }
 }
