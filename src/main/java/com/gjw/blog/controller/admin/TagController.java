@@ -1,28 +1,27 @@
-package com.gjw.blog.controller;
+package com.gjw.blog.controller.admin;
 
 import com.gjw.blog.service.TagService;
 import com.gjw.blog.utils.PageQueryUtil;
 import com.gjw.blog.utils.Result;
 import com.gjw.blog.utils.ResultGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
  * @author gjw19
- * @since 2019/10/8.
+ * @since 2019/10/9.
  */
 @Controller
 @RequestMapping("/admin")
 public class TagController {
 
-    @Autowired
+    @Resource
     private TagService tagService;
-
 
     @GetMapping("/tags")
     public String tagPage(HttpServletRequest request) {
@@ -36,9 +35,10 @@ public class TagController {
         if (StringUtils.isEmpty(params.get("page")) || StringUtils.isEmpty(params.get("limit"))) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        PageQueryUtil pageQueryUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(tagService.getBlogTagPage(pageQueryUtil));
+        PageQueryUtil pageUtil = new PageQueryUtil(params);
+        return ResultGenerator.genSuccessResult(tagService.getBlogTagPage(pageUtil));
     }
+
 
     @PostMapping("/tags/save")
     @ResponseBody
@@ -65,6 +65,4 @@ public class TagController {
             return ResultGenerator.genFailResult("有关联数据请勿强行删除");
         }
     }
-
 }
-

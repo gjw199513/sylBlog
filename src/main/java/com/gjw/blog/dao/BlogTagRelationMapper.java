@@ -1,6 +1,7 @@
 package com.gjw.blog.dao;
 
 import com.gjw.blog.entity.BlogTagRelation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,4 +25,6 @@ public interface BlogTagRelationMapper {
     int updateByPrimaryKeySelective(BlogTagRelation record);
 
     int updateByPrimaryKey(BlogTagRelation record);
+
+    int batchInsert(@Param("relationList") List<BlogTagRelation> blogTagRelationList);
 }
